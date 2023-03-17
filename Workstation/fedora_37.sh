@@ -36,13 +36,15 @@ sudo dnf install -y autoconf automake cmake make clang gcc                  # bu
 sudo dnf install -y kernel-devel kernel-headers                             # kernel header
 sudo dnf install -y gnome-tweaks                                            # gnome customization app
 sudo dnf install -y gnome-extensions-app                                    # extension for gnome
-sudo dnf install -y docker                                                  # docker container
+sudo dnf install -y podman podman-docker                                    # container
 sudo dnf install -y lm_sensors                                              # temp sensors
 sudo dnf install -y stress                                                  # stress tool test
 sudo dnf install -y VirtualBox kmod-VirtualBox                              # virtualbox
 sudo dnf install -y xrdp                                                    # remote desktop
 sudo dnf install -y wine wine-core                                          # windows compatibility
 sudo dnf install -y cockpit                                                 # cockpit remote management
+sudo dnf install flatpak                                                    # flatpak support (should be already installed)
+sudo dnf install flatpak-builder                                            # to create flatpak
 
 # install library
 sudo dnf install -y SDL2 SDL2-devel
@@ -61,44 +63,11 @@ if lscpu | grep -q 'AMD'; then
     echo AMD
 fi
 
-sudo dnf install -y code        
+sudo dnf install -y code
 
-echo ""
-echo "Manual Step:"
-echo "Run flatpak.sh"
-echo "Run vscode.sh"
-echo "Open ExtensionManager"
-echo "Go to Browse and install the folowing extension:"
-echo "- AppIndicator and KStatusNotifierItem Support"
-echo "- Desktop Icons NG (DING)"
-echo "- Removable Drive Menu"
-echo "- Dash to Panel"
-echo "- ArcMenu"
-echo "- ddterm"
-echo ""
-echo "Press a key to continue"
-read -n 1 -s
-
-# enable/disable gnome extensions
-gnome-extensions disable launch-new-instance@gnome-shell-extensions.gcampax.github.com
-gnome-extensions disable places-menu@gnome-shell-extensions.gcampax.github.com
-gnome-extensions disable window-list@gnome-shell-extensions.gcampax.github.com
-gnome-extensions disable apps-menu@gnome-shell-extensions.gcampax.github.com
-gnome-extensions disable background-logo@fedorahosted.org
-
-gnome-extensions enable drive-menu@gnome-shell-extensions.gcampax.github.com
-gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
-gnome-extensions enable dash-to-panel@jderose9.github.com
-gnome-extensions enable ddterm@amezin.github.com
-gnome-extensions enable arcmenu@arcmenu.com
-gnome-extensions enable ding@rastersoft.com
-
-# set gnome settings
-gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
-gsettings set org.gnome.desktop.calendar show-weekdate true
-gsettings set org.gnome.desktop.interface clock-show-weekday true
-gsettings set org.gnome.desktop.interface clock-show-date true
-gsettings set org.gnome.desktop.interface clock-show-seconds true
+sh vscode.sh
+sh flatpak.sh
+sh gnome.sh
 
 # start service
 sudo systemctl enable cockpit.socket
@@ -155,9 +124,6 @@ echo "Please reboot your computer"
 echo ""
 echo ""
 echo "READ ME:"
-echo ""
-echo "- import ArcMenu.conf in ArcMenu"
-echo "- import DashToPanel.conf in Dash To Panel"
 echo ""
 echo "- MS teams and office 365 to be installed in edge or chrome as webaps"
 echo ""

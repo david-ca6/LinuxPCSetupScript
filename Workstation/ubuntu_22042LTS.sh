@@ -40,12 +40,8 @@ if lscpu | grep -q 'AMD'; then
     echo AMD
 fi
 
-echo ""
-echo "Manual Step:"
-echo "Run flatpak.sh"
-echo "Run vscode.sh"
-echo "Press a key to continue"
-read -n 1 -s
+sh vscode.sh
+sh flatpak.sh
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
