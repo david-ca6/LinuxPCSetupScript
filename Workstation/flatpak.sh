@@ -41,6 +41,7 @@ flatpak install -y flathub org.texstudio.TeXstudio                         # lat
 flatpak install -y flathub net.werwolv.ImHex                               # hex editor
 flatpak install -y flathub org.ghidra_sre.Ghidra                           # NSA SRE Framework
 flatpak install -y flathub io.github.shiftey.Desktop                       # github app
+flatpak install -y flathub cc.arduino.IDE2                                 # arduino ide
 
 
 # setup discord rich presence
