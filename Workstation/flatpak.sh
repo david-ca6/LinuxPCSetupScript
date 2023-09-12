@@ -16,6 +16,7 @@ flatpak install -y flathub com.microsoft.Edge                              # bro
 flatpak install -y flathub com.google.Chrome                               # browser used for test
 flatpak install -y flathub org.mozilla.firefox                             # main browser
 flatpak install -y flathub com.discordapp.Discord                          # communication
+flatpak install -y flathub im.riot.Riot                                    # communication
 flatpak install -y flathub org.mozilla.Thunderbird                         # email
 flatpak install -y flathub org.qbittorrent.qBittorrent                     # torrent
 flatpak install -y flathub org.remmina.Remmina                             # ssh and rdp
