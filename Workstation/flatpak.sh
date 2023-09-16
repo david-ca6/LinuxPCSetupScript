@@ -23,7 +23,7 @@ flatpak install -y flathub org.remmina.Remmina                             # ssh
 
 # install flatpak software: productivity
 flatpak install -y flathub org.gnome.clocks                                # world clock
-flatpak install -y flathub org.gnome.World.Secrets                         # password manager
+flatpak install -y flathub app.authpass.AuthPass                           # password manager
 flatpak install -y flathub net.cozic.joplin_desktop                        # todo and notes
 flatpak install -y flathub ca.hamaluik.Timecop                             # time tracker
 
