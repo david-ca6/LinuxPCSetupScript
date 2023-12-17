@@ -9,6 +9,10 @@ sudo dnf update
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+# microsoft key and code repo
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
 # update package
 sudo dnf upgrade --refresh -y
 sudo dnf check-update
@@ -16,9 +20,7 @@ sudo dnf update
 
 # remove default software
 sudo dnf remove -y evolution                                                # email client, use use thunderbird flatpak
-sudo dnf remove -y firefox                                                  # web browser, we use librewolf and chrome flatpak
-sudo dnf remove -y totem                                                    # video player, we use vlc flatpak
-sudo dnf remove -y libswscale-free-5.1.2-1.fc37                             # we need to use ffmepg from rpmfusion for better compatibility
+sudo dnf remove -y libswscale-free-*                                        # we need to use ffmepg from rpmfusion for better compatibility
 
 # install software
 sudo dnf install -y ffmpeg                                                  # video encoder/decoder
@@ -42,6 +44,7 @@ sudo dnf install -y cockpit                                                 # co
 sudo dnf install -y flatpak                                                 # flatpak support (should be already installed)
 sudo dnf install -y flatpak-builder                                         # to create flatpak
 
+sudo dnf install code
 
 # install library
 sudo dnf install -y SDL2 SDL2-devel
@@ -67,7 +70,7 @@ fi
 
 sh vscode.sh
 sh flatpak.sh
-sh gnome.sh
+# sh gnome.sh
 
 # start service
 sudo systemctl enable cockpit.socket
